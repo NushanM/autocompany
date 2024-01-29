@@ -16,7 +16,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy our codebase into the container
 COPY . .
 
-RUN ./manage.py collectstatic --noinput --traceback
+USER root
+
+RUN python ./manage.py collectstatic --noinput --traceback
 
 # Ops Parameters
 ENV WORKERS=2
