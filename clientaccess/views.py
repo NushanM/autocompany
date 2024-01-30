@@ -12,7 +12,7 @@ from .models import Item, Order, ShoppingCart
 import datetime
 
 # Create your views here.
-from .serializers import UserSerializer, ItemSerializer, ShoppingCartSerializer, OrderSerializer
+from .serializers import UserSerializer, ItemSerializer, ShoppingCartSerializer, OrderSerializer, BasicItemSerializer
 
 @api_view(['POST'])
 def signup(request):
@@ -38,7 +38,7 @@ def login(request):
 @api_view(['PUT'])
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAdminUser])
-def list_item(request):
+def add_item(request):
     serializer = ItemSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -48,6 +48,13 @@ def list_item(request):
 @api_view(['GET'])
 def all_items(request):
     queryset = Item.objects.all()
+    serializer = BasicItemSerializer(queryset, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def see_item(request):
+    item_id = request.GET.get('itemid', '')
+    queryset = Item.objects.all().filter(id=item_id)
     serializer = ItemSerializer(queryset, many=True)
     return Response(serializer.data)
 
@@ -63,17 +70,9 @@ def add_to_cart(request):
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication, TokenAuthentication])
-@permission_classes([IsAdminUser])
-def all_carts(request):
-    queryset = ShoppingCart.objects.all()
-    serializer = ShoppingCartSerializer(queryset, many=True)
-    return Response(serializer.data)
-
-@api_view(['POST'])
-@authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def my_cart(request):
-    user_id = request.data["user"]
+    user_id = request.GET.get('userid', '')
     queryset = ShoppingCart.objects.all().filter(user=user_id)
     serializer = ShoppingCartSerializer(queryset, many=True)
     return Response(serializer.data)
@@ -84,7 +83,7 @@ def my_cart(request):
 def remove_item(request):
     user_id = request.data["user"]
     entry_id = request.data["id"]
-    ShoppingCart.objects.all().filter(user=user_id).filter(id=entry_id).delete()
+    ShoppingCart.objects.all().filter(user_id=user_id).filter(id=entry_id).delete()
     return Response({"message":"Succesfully removed"})
 
 @api_view(['POST'])
