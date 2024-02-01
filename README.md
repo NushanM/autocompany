@@ -11,6 +11,6 @@
 -> There are two accounts already.
 -> Admin = { "username": "admin", "password": "gapstars" }
 -> User = { "username": "user1", "password": "1234" }
--> Only Admin has access to /list_item, /all_carts.
--> Login need to access /add_to_cart, /my_cart, /remove_item.
+-> Only Admin has access to /add_item.
+-> Login need to access /add_to_cart, /my_cart, /remove_from_cart, /order.
 -> Requests to above endpoints should include authorization token.
