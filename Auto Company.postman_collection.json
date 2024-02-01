@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "b6403406-0db9-494c-9d92-88a2a1cdba3e",
+		"name": "Auto Company",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "14497369"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"user1\", \"password\": \"1234\", \"email\": \"user1@gmail.com\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:80/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"admin\", \"password\": \"gapstars\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:80/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Add item",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "Token 5f3a65b1a73f856cfbd93bd53c4cb273401cf886",
+						"in": "header",
+						"key": "Authorization"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "d0de8c8ff7aaaff7e1d98ea30214edc3634a27d1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"id\": \"3\",\"name\": \"Seat Cover\", \"price\": 50, \"details\": \"Brand new\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:80/add_item"
+			},
+			"response": []
+		},
+		{
+			"name": "See All items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:80/all_items"
+			},
+			"response": []
+		},
+		{
+			"name": "See item details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:80/see_item/?itemid=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"see_item",
+						""
+					],
+					"query": [
+						{
+							"key": "itemid",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"user1\", \"password\": \"1234\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:80/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Add one more already existing item to Cart",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "Token 83000e4d58f5274f7f9c4ed1ed5df4a373b11786",
+						"in": "header",
+						"key": "Authorization"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"user_id\": 2, \"item_id\": 2}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:80/add_to_cart"
+			},
+			"response": []
+		},
+		{
+			"name": "Add new Item to cart",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "Token 83000e4d58f5274f7f9c4ed1ed5df4a373b11786",
+						"in": "header",
+						"key": "Authorization"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"user_id\": 2, \"item_id\": 1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:80/add_to_cart"
+			},
+			"response": []
+		},
+		{
+			"name": "See user cart",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "Token 83000e4d58f5274f7f9c4ed1ed5df4a373b11786",
+						"in": "header",
+						"key": "Authorization"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:80/my_cart/?userid=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"my_cart",
+						""
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Item from cart when there is only one such item in cart",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "Token 83000e4d58f5274f7f9c4ed1ed5df4a373b11786",
+						"in": "header",
+						"key": "Authorization"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"user_id\": 2 ,\"item_id\":1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:80/remove_from_cart"
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Item from cart when there are multiple such items in the cart",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "Token 83000e4d58f5274f7f9c4ed1ed5df4a373b11786",
+						"in": "header",
+						"key": "Authorization"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"user_id\": 2 ,\"item_id\":2}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:80/remove_from_cart"
+			},
+			"response": []
+		},
+		{
+			"name": "Order",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "Token 83000e4d58f5274f7f9c4ed1ed5df4a373b11786",
+						"in": "header",
+						"key": "Authorization"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"order_id\":6,\"user_id\":2, \"deliver_date\": \"2024-02-15\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:80/order"
+			},
+			"response": []
+		}
+	]
+}
