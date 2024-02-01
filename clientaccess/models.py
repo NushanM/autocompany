@@ -25,7 +25,6 @@ class Order(models.Model):
         return self.order_id
     
 class ShoppingCart(models.Model):
-    id = models.IntegerField(primary_key=True)
     user_id = models.IntegerField()
     item_id = models.IntegerField(null = True)
     quantity = models.IntegerField(default = 1)
