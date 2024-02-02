@@ -1,12 +1,13 @@
 **Want to run the project in Docker?**
 ## Build
+- create .env file in the directory where manage.py located. example_env.txt can be use as a reference.
 - ```docker build -t autocompany .```
 ## Run
 - ``` docker run -p 80:80 -d autocompany```
 # Host
 -```http://127.0.0.1/```
 
--> URLs of requests in postman collection are alreay chaned to above port.
+-> URLs of requests in postman collection are alreay changed to above port.
 -> For any request which add entry into the db, id field should be updated.
 -> There are two accounts already.
 -> Admin = { "username": "admin", "password": "gapstars" }
